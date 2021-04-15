@@ -1,31 +1,36 @@
 # -*- coding: utf-8 -*-
 import numpy as np
 import random as r
+import sys 
 
-
-def init_param():
-    print('Write start x')
-    x_start = float(input())
-    print('Write end  x')
-    x_end = float(input())
+def init_param(array):
     
-    print('Write left condition')
-    left_cond = int(input())
-    print('Write right condition')
-    right_cond = int(input())
+    if(array == 0):
+        print('Write array of x_range, conditions, types')
+        array = input()
     
-    print('Write left type')
-    left_type = input()
-    print('Write right type')
-    right_type = input()
-    
-    x_range = np.array([x_start, x_end])
-    conditions = np.array([left_cond, right_cond])
-    types = np.array([left_type, right_type])
+    x_range = np.array([array[0], array[1]])
+    conditions = np.array([array[2], array[3]])
+    types = np.array([array[4], array[5]])
     return x_range, conditions, types
+
+
+def generate_geo(x_range):
+    print('Write number of nodes')
+    nodes_num = int(input())
     
+    nodes = np.linspace(x_range[0], x_range[1], nodes_num)
+    print(nodes)
+    
+    return nodes
 #1a
+x_range, conditions, types = init_param([0,1,-1,3,'N','D'])
+print('x range', x_range)
+print('conditions', conditions)
+print('types', types)
 
 #1b
-x_range, conditions, types = init_param()
+
+nodes = generate_geo(x_range)
+
 
