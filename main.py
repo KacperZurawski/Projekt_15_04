@@ -2,6 +2,7 @@
 import numpy as np
 import random as r
 import sys 
+import matplotlib.pyplot as plt
 
 def init_param(array):
     
@@ -36,16 +37,27 @@ def generate_geo(x_range):
         sections[i][1] = i+1
 
     return nodes, sections
+
+
+def plot_geo(x_range, nodes):
+    plt.plot(x_range[0],0,'*') #x_range[0]
+    plt.plot(x_range[1],0,'*') #x_range[1]
+    plt.plot(x_range,[0,0])
+    plt.plot(nodes,np.zeros(len(nodes)),'*')
+    
+    plt.xlim([x_range[0]-0.3,x_range[1]+0.3])
+    plt.ylim([-0.2,0.2])
+
+
 #1a
 x_range, conditions, types = init_param([0,1,-1,3,'N','D'])
 print('x range', x_range)
 print('conditions', conditions)
 print('types', types)
-
 #1b
-
 nodes, sections = generate_geo(x_range)
 print('nodes', nodes)
 print('sections', sections)
-
+#1c
+plot_geo(x_range, nodes)
 
