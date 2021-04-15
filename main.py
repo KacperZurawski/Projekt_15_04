@@ -27,7 +27,7 @@ def generate_geo(x_range):
         nodes = np.block([nodes, i * val + x_range[0]])
     for i in range(1,nodes_num-1):
         nodes[i] = nodes[i] + round(r.uniform(-0.05, 0.05),2)
-        
+    nodes = np.around(nodes, decimals=2)
     
     sections = np.zeros((nodes_num-1,2))
 
@@ -39,18 +39,29 @@ def generate_geo(x_range):
     return nodes, sections
 
 
-def plot_geo(x_range, nodes):
+def plot_geo(x_range, nodes,types):
     plt.plot(x_range[0],0,'*') #x_range[0]
     plt.plot(x_range[1],0,'*') #x_range[1]
     plt.plot(x_range,[0,0])
     plt.plot(nodes,np.zeros(len(nodes)),'*')
     
+    plt.text(x_range[0]-0.15,0,types[0])
+    plt.text(x_range[1]+0.15,0,types[1])
+    
+    for i in range(0,len(nodes)):
+        plt.text(nodes[i]-0.03,0.01,str(nodes[i]))
+        plt.text(nodes[i]-0.05,-0.05,str(i+1))
+    
+    for i in range(0,len(nodes)-1):
+        print((nodes[i]-nodes[i+1])/2)
+        plt.text(nodes[i]/2+nodes[i+1]/2, 0.05,str(i+1))
+    
     plt.xlim([x_range[0]-0.3,x_range[1]+0.3])
-    plt.ylim([-0.2,0.2])
+    plt.ylim([-0.2,0.42])
 
 
 #1a
-x_range, conditions, types = init_param([0,1,-1,3,'N','D'])
+x_range, conditions, types = init_param([-1,2,-1,3,'N','D'])
 print('x range', x_range)
 print('conditions', conditions)
 print('types', types)
@@ -59,5 +70,5 @@ nodes, sections = generate_geo(x_range)
 print('nodes', nodes)
 print('sections', sections)
 #1c
-plot_geo(x_range, nodes)
+plot_geo(x_range, nodes,types)
 
