@@ -32,8 +32,8 @@ def generate_geo(x_range):
 
 
     for i in range(0, nodes_num-1, 1):
-        sections[i][0] = nodes[i]
-        sections[i][1] = nodes[i+1]
+        sections[i][0] = i
+        sections[i][1] = i+1
 
     return nodes, sections
 #1a
@@ -48,22 +48,4 @@ nodes, sections = generate_geo(x_range)
 print('nodes', nodes)
 print('sections', sections)
 
-"""
-def GenerujTabliceGeometrii(x_0,x_p,n):
-
-    val = (x_p-x_0)/(n-1)
-    tablica1 = np.array([x_0])
-
-    for indeks_tab1 in range(1,n,1):
-        tablica1 = np.block([tablica1, indeks_tab1 * val + x_0])
-
-    tablica2 = np.zeros((n-1,2))
-
-    for indeks_tab2 in range(0, n-1, 1):
-        tablica2[indeks_tab2][0] = tablica1[indeks_tab2]
-        tablica2[indeks_tab2][1] = tablica1[indeks_tab2+1]
-
-
-    return indeks_tab1,tablica1,tablica2
-"""
 
